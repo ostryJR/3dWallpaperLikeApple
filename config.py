@@ -4,11 +4,12 @@ import math as m
 WIDTH = 800
 HEIGHT = 600
 targetFPS = 60
+depth = 10
 
 #function config
 step = 10 #px
 def functionNOTUSEDNOW(x):
-    return m.pow(x,3) + 5*m.pow(x,2) + 3*x + 2
+    return (m.pow(x,3) + 5*m.pow(x,2) + 3*x + 2)
 
 def function(x):
     return -m.pow(x/4,2)

@@ -23,8 +23,9 @@ i = 0
 # Initialize Pygame clock
 clock = pg.time.Clock()
 
-calculatedPoints = fnc.calculatePoints()
-
+calculatedPointsNew = []
+for i in range(0, cfg.depth):
+    calculatedPointsNew.append(fnc.calculatePointsNew(1-(i*0.05)))
 
 running = True
 while running:
@@ -48,8 +49,10 @@ while running:
     #    pg.draw.rect(screen, (cfg.colors[idx]), (0, 0+(idx*(cfg.HEIGHT/10)), cfg.WIDTH, cfg.HEIGHT/10))
     
     
-    pg.draw.polygon(screen,cfg.colors[1],calculatedPoints)
-    #pg.draw.aalines(screen,cfg.colors[1], 1, calculatedPoints)
+    for idx, line in enumerate(reversed(calculatedPointsNew)):
+        #pg.draw.lines(screen,cfg.colors[idx],0,line)
+        pg.draw.polygon(screen,cfg.colors[9-idx],line)
+    #pg.draw.lines(screen,cfg.colors[1],0,calculatedPointsNew)
    
     pg.display.flip()
     i+=1
