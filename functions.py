@@ -1,11 +1,13 @@
 import config as cfg
+import math as m
+import random as rnd
 
-def calculatePointsNew(scalefactor):
+def calculatePoints(scalefactor):
     array = []
-    
-    for idx in range(-50, 50+1, 1):
-        
+    for idx in range(-100, 100+1, 1):
         array.append([idx, cfg.function(idx)])
+        if idx%10==0:
+            print("now", idx)
     #print(array)
     
     for idx in array: # setting the graph on the middle of the screen

@@ -1,6 +1,6 @@
 import pygame as pg
 import sys
-import random
+import random as rnd
 import math as m
 import time
 import numpy as np
@@ -25,7 +25,8 @@ clock = pg.time.Clock()
 
 calculatedPointsNew = []
 for i in range(0, cfg.depth):
-    calculatedPointsNew.append(fnc.calculatePointsNew(1-(i*0.05)))
+    calculatedPointsNew.append(fnc.calculatePoints(1-(i*0.05)))
+    print(i)
 
 running = True
 while running:

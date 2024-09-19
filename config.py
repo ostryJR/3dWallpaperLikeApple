@@ -1,9 +1,10 @@
 import math as m
+import random as rnd
 
 #screen config
 WIDTH = 800
 HEIGHT = 600
-targetFPS = 60
+targetFPS = 2
 depth = 10
 
 #function config
@@ -12,7 +13,16 @@ def functionNOTUSEDNOW(x):
     return (m.pow(x,3) + 5*m.pow(x,2) + 3*x + 2)
 
 def function(x):
-    return -m.pow(x/4,2)
+    return -(m.pow(x/4/1.5,2) + m.sin(x) + m.sin(x/3) + m.sin(x*13))
+
+def functionNEW(x):
+    return -(m.pow(x/4/1.5,2) + m.sin(x)*0.1)
+
+def function2E(x):
+    return -x*(x+6)*(2+x)*(-3-x)+3
+
+def functionB(x):
+    return m.cosh(x)
 
 colors = [
 (41, 47, 86),
