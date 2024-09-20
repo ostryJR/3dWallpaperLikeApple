@@ -4,7 +4,7 @@ import random as rnd
 #screen config
 WIDTH = 800
 HEIGHT = 600
-targetFPS = 2
+targetFPS = 10
 depth = 10
 
 #function config
@@ -24,6 +24,7 @@ def function2E(x):
 def functionB(x):
     return m.cosh(x)
 
+# generated from https://colordesigner.io/gradient-generator
 colors = [
 (41, 47, 86),
 (30, 69, 114),

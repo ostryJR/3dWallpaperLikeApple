@@ -18,15 +18,12 @@ pg.display.set_caption("3d Wallpaper")
 
 font = pg.font.SysFont(None, 36)
 
-i = 0
-
 # Initialize Pygame clock
 clock = pg.time.Clock()
 
 calculatedPointsNew = []
 for i in range(0, cfg.depth):
     calculatedPointsNew.append(fnc.calculatePoints(1-(i*0.05)))
-    print(i)
 
 running = True
 while running:
