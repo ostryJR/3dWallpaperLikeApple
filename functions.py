@@ -6,7 +6,7 @@ def calculatePoints(scalefactor, coef):
     array = []
     
     for idx in range(-cfg.WIDTH,cfg.WIDTH+1, 1):
-        array.append([idx, cfg.functionFlat(idx,coef)-50])
+        array.append([idx, cfg.functionFlat(idx,coef)-30])
     
     for idx in array: # setting the graph on the middle of the screen
         idx[0] = idx[0]*10*scalefactor + int(cfg.WIDTH/2)
