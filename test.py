@@ -5,7 +5,7 @@ import config as cfg
 import math as m
 
 def function(x,b):
-    result = 0#-m.pow(x/8,2)
+    result = 0#-m.pow(x/30,2)
     for i in b:
         if i%2==0:
             result += m.sin(i*(x+cfg.WIDTH+i/2))#*m.log(abs(x+0.01))/m.log(10)
@@ -17,7 +17,7 @@ def function(x,b):
 def calculatePoints(scalefactor, coef):
     array = []
     
-    for idx in range(-100, 100+1, 1):
+    for idx in range(-cfg.WIDTH,cfg.WIDTH+1, 1):
         array.append([idx, function(idx,coef)-50])
     
     for idx in array: # setting the graph on the middle of the screen
@@ -35,23 +35,25 @@ def calculatePoints(scalefactor, coef):
 # Initialize Pygame
 pg.init()
 pg.font.init()
+clock = pg.time.Clock()
 
 # Set up the screen
 screen = pg.display.set_mode((cfg.WIDTH, cfg.HEIGHT))
 pg.display.set_caption("Testing graphs")
+my_font = pg.font.SysFont('Roboto MS', 40)
 
-
-calculatedPointsNew = []
+#make the functions
+functions = []
 for i in range(0, cfg.depth):
-    coef = [rnd.random() for i in range(0,10)]
-    calculatedPointsNew.append(calculatePoints(1-(i*0.05), coef))
-
+    functions.append([rnd.random() for i in range(0,10)])
 
 iter = 0
 
 running = True
 while running:
-        
+    # Limit the frame rate to 60 FPS
+    clock.tick(cfg.targetFPS)
+    
     # Handle events
     for event in pg.event.get():
         if event.type == pg.QUIT:
@@ -59,14 +61,22 @@ while running:
         elif event.type == pg.KEYDOWN and event.key == pg.K_ESCAPE:
             sys.exit(0)
 
+    if iter%(cfg.targetFPS*2) == 0:
+        functions.append([rnd.random() for i in range(0,10)])
+        iter = 0
+    
+    calculatedPointsNew = []
+    for i in range(len(functions)-cfg.depth, len(functions)):
+        calculatedPointsNew.append(calculatePoints(1-(i*0.05)+(iter/cfg.targetFPS/10), functions[i]))
+    
     # Draw background
     screen.fill((220, 220, 220))
 
     for idx, line in enumerate(reversed(calculatedPointsNew)):
             #pg.draw.lines(screen,cfg.colors[idx],0,line)
-            pg.draw.polygon(screen,cfg.colors[9-idx],line)
+            pg.draw.polygon(screen,cfg.colors[cfg.depth-idx-1].getColor(),line)
 
-
+    #screen.blit(fps_text, (0,0))#print fps
     pg.display.flip()
     iter += 1
 pg.quit()
